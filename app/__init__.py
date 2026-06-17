@@ -1,0 +1,1 @@
+"""InfoGlobe application package."""
