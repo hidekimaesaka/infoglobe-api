@@ -18,6 +18,11 @@ def _load_env_file() -> None:
 _load_env_file()
 
 
+def _parse_csv_env(name: str, default: str) -> list[str]:
+    raw_value = os.getenv(name, default)
+    return [item.strip() for item in raw_value.split(",") if item.strip()]
+
+
 class Settings:
     app_name: str = os.getenv("APP_NAME", "InfoGlobe API")
     app_version: str = os.getenv("APP_VERSION", "0.1.0")
@@ -39,6 +44,7 @@ class Settings:
         os.getenv("RATE_LIMIT_REQUESTS_PER_MINUTE", "10")
     )
     rate_limit_window_seconds: int = int(os.getenv("RATE_LIMIT_WINDOW_SECONDS", "60"))
+    cors_allow_origins: list[str] = _parse_csv_env("CORS_ALLOW_ORIGINS", "*")
 
 
 settings = Settings()

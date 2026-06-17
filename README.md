@@ -40,6 +40,7 @@ Copie `.env.example` para `.env` e preencha:
 - `API_KEY_OPENROUTER`
 - `MONGO_DB_URL_CONN`
 - `OPENROUTER_MODEL` opcional
+- `CORS_ALLOW_ORIGINS` opcional (`*` libera todas as origens)
 - `RATE_LIMIT_REQUESTS_PER_MINUTE` opcional
 - `RATE_LIMIT_WINDOW_SECONDS` opcional
 

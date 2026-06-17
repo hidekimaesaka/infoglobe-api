@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes.country_info import router as country_info_router
 from app.api.routes.health import router as health_router
@@ -17,6 +18,13 @@ def create_app() -> FastAPI:
         RateLimitMiddleware,
         max_requests=settings.rate_limit_requests_per_minute,
         window_seconds=settings.rate_limit_window_seconds,
+    )
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.cors_allow_origins,
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
     )
 
     @app.get("/")
